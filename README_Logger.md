@@ -80,7 +80,7 @@ Intercept function calls to print the arguments it's being called with.  This me
 Note that if you pass an invalid function, _when in debug mode_, a valid function with an error message will be returned
 
 ```lua
-originFunction = FS22LogFunction (logLevel, originMod, originFunctionName, originFunction)
+originFunction = FS22LogFunction(logLevel, originMod, originFunctionName, originFunction)
 ```
 
 - __logLevel__           : Log level from `LOG_LEVEL` below, has no function is set to `.WARNINGS` or `.ERRORS` or `.NONE`

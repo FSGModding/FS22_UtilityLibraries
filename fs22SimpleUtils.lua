@@ -1,3 +1,82 @@
+-- FS22 Simple Utilities
+--
+-- Included:
+--
+-- JTSUtil.hslToRgb(h, s, l, a)
+--  Convert a HSL color to sRGBa
+--
+--  Paramaters
+--   h : hue [0-1]
+--   s : saturation [0-1]
+--   l : luminosity [0-1]
+--   a : alpha [0-1]
+--  Return
+--   { r, g, b, ,a}
+--  Expects h,s,l,a to be in the range of [0-1]
+--  Returns a table {r,g,b,a}
+--
+--
+-- JTSUtil.colorPercent(percent, reverse, fractional)
+--  Return a color based on percentage (green->red) (or the colorblind equivelent)
+--
+--  Paramaters
+--   percent : percent to get color for [0-1] OR [0-100]
+--   reverse : false = 100% == green, true = 100% == red
+--   fractional : true = percent is [0-1], false = percent is [0-100]
+--
+--  Return
+--   { r, g, b, a }
+--
+--
+-- JTSUtil.calcPercent(level, capacity, text)
+--  Safely calculate a percentage
+--
+--  Paramaters
+--   level : amount
+--   capacity: total
+--   text: true = append a "%" sign to the output
+--
+--  Return
+--   [0-100] (number) OR [0%-100%] (string)
+--
+--
+-- JTSUtil.qConcatS(...)
+--  Safely concatenate all parameters with a space between each.
+--  Automatically converts all parameters to strings.
+--
+--
+-- JTSUtil.qConcat(...)
+--  Safely concatenate all parameters.
+--  Automatically converts all parameters to strings.
+--
+--
+-- JTSUtil.sortTableByKey(inputTable, key)
+--  Sort a table by a key name, where the table is of the style
+--   {
+--     { key1 = "value1", key2 = "sortMeCCC"},
+--     { key1 = "value2", key2 = "sortMeBBB"},
+--     { key1 = "value3", key2 = "sortMeFFF"},
+--     { key1 = "value4", key2 = "sortMeAAA"},
+--   }
+--  In this case, sorting by "key2" would order the table "sortMeAAA", "sortMeBBB", etc.
+--
+--
+-- JTSUtil.stackNewRow(inputTable)
+-- JTSUtil.stackAddToNewRow(inputTable, entry)
+-- JTSUtil.stackAddToRow(inputTable, entry)
+-- JTSUtil.dispStackAdd(inputTable, text, color, newRow)
+-- JTSUtil.dispGetLine(inputTable, index, reverse)
+--  Very simple implementation of a table stack, used in several of my mods.
+--  Look at the code for more info.
+--
+--
+-- JTSUtil.stringSplit(str, sep)
+--   Splits string "str" by seperator "sep"
+--
+--
+-- (c)JTSage Modding & FSG Modding.  You may reuse or alter this code to your needs as nessesary with
+-- no prior permission.  No warrenty implied or otherwise.
+
 
 JTSUtil = {}
 
@@ -114,6 +193,18 @@ function JTSUtil.dispStackAdd(inputTable, text, color, newRow)
 	else
 		JTSUtil.stackAddToRow(inputTable, {text = tostring(text), color = color})
 	end
+end
+
+function JTSUtil.stackGetRow(inputTable, rowNumber, reverse)
+	if not reverse then
+		return inputTable[rowNumber]
+	end
+
+	local rev_table = {}
+	for i=#inputTable[rowNumber], 1, -1 do
+		rev_table[#rev_table+1] = inputTable[rowNumber][i]
+	end
+	return rev_table
 end
 
 function JTSUtil.stringSplit(str, sep)

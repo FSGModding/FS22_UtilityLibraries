@@ -1,3 +1,8 @@
+-- CLI sugar file
+--
+-- please don't use this - it defines some game functions in a poor way so that the demos
+-- can run on the command line.  It's ugly.
+--
 function Class(members, baseClass)
 	members = members or {}
 	local __index = members

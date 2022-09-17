@@ -20,6 +20,7 @@
       - [Searching Tables Output](#searching-tables-output)
     - [Function Argument Printer](#function-argument-printer)
     - [Dynamic run level](#dynamic-run-level)
+  - [VSCode Snippets](#vscode-snippets)
   - [Distribution & Licensing Terms](#distribution--licensing-terms)
 
 ## Class Initialization
@@ -265,6 +266,34 @@ myLoggerVanilla:printVariable(testVarString, FS22Log.LOG_LEVEL.INFO, "test_strin
 
 AddTest = FS22LogFunction(myDebug, "demoSample", "AddTest", AddTest)
 
+```
+
+## VSCode Snippets
+
+This is a set of VSCode snippets to ease the use of the logger even more.
+
+```json
+  "Logger: variable": {
+    "prefix": [":printVariable"],
+    "body": [
+      ":printVariable(${1:inputTable}, FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\", ${4|nil,1,2,3,4|}, nil, ${5|nil,{\"searchTable\"},\"searchText\"|})"
+    ],
+    "description": "Print a variable"
+  },
+  "Logger: variableIsTable": {
+    "prefix": [":printVariableIsTable"],
+    "body": [
+      ":printVariableIsTable(${1:inputTable}, FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\", ${4|nil,1,2,3,4|}, nil, ${5|nil,{\"searchTable\"},\"searchText\"|})"
+    ],
+    "description": "Print a variable"
+  },
+  "Logger: string": {
+    "prefix": [":print"],
+    "body": [
+      ":print(\"${1:text}\", FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\")"
+    ],
+    "description": "Print a variable"
+  }
 ```
 
 ## Distribution & Licensing Terms

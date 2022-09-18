@@ -24,18 +24,29 @@ myLoggerVanilla:printVariable(DemoSampleData, nil, "sample_data", 3)
 myLoggerVanilla:printVariable(DemoSampleData, nil, "sample_data_search_fail", 4, nil, {"badArgument!"})
 myLoggerVanilla:printVariable(DemoSampleData, nil, "sample_data_search", 4, nil, {{"batter", "Chocolate"}, FS22Log.SEARCH.VALUES})
 
-function AddTest(a, b)
-	print("Original AddTest called: " .. tostring(a) .. " + " .. tostring(b) .. " = " .. tostring(a+b))
-end
+-- this one prints
+myLoggerVanilla:printVariableIfChanged(DemoSampleData, nil, "sample_data_search_once", 4, nil, {{"batter", "Chocolate"}, FS22Log.SEARCH.VALUES})
+-- this one skips
+myLoggerVanilla:printVariableIfChanged(DemoSampleData, nil, "sample_data_search_once", 4, nil, {{"batter", "Chocolate"}, FS22Log.SEARCH.VALUES})
+table.insert(DemoSampleData, {"hello"})
+--this one prints
+myLoggerVanilla:printVariableIfChanged(DemoSampleData, nil, "sample_data_search_once", 4, nil, {{"batter", "Chocolate"}, FS22Log.SEARCH.VALUES})
+-- this one skips
+myLoggerVanilla:printVariableIfChanged(DemoSampleData, nil, "sample_data_search_once", 4, nil, {{"batter", "Chocolate"}, FS22Log.SEARCH.VALUES})
 
-function SubTest(a, b)
-	print("Original SubTest called: " .. tostring(a) .. " - " .. tostring(b) .. " = " .. tostring(a-b))
-end
 
-InvalidFunction = FS22LogFunction(FS22Log.DEBUG_MODE.DEVEL, "demoSample", "InvalidFunction", InvalidFunction)
-AddTest         = FS22LogFunction(FS22Log.DEBUG_MODE.DEVEL, "demoSample", "AddTest", AddTest)
-SubTest         = FS22LogFunction(FS22Log.DEBUG_MODE.WARNINGS, "demoSample", "SubTest", SubTest)
+-- function AddTest(a, b)
+-- 	print("Original AddTest called: " .. tostring(a) .. " + " .. tostring(b) .. " = " .. tostring(a+b))
+-- end
 
-InvalidFunction()
-AddTest(1, 2)
-SubTest(5, 1)
+-- function SubTest(a, b)
+-- 	print("Original SubTest called: " .. tostring(a) .. " - " .. tostring(b) .. " = " .. tostring(a-b))
+-- end
+
+-- InvalidFunction = FS22LogFunction(FS22Log.DEBUG_MODE.DEVEL, "demoSample", "InvalidFunction", InvalidFunction)
+-- AddTest         = FS22LogFunction(FS22Log.DEBUG_MODE.DEVEL, "demoSample", "AddTest", AddTest)
+-- SubTest         = FS22LogFunction(FS22Log.DEBUG_MODE.WARNINGS, "demoSample", "SubTest", SubTest)
+
+-- InvalidFunction()
+-- AddTest(1, 2)
+-- SubTest(5, 1)

@@ -58,6 +58,20 @@ yourLogger.printVariableIsTable(output, logLevel, filter, depthLimit, prefix, se
 
 The __IsTable__ variant will auto-upgrade the logLevel to `WARNING` when the variable is not a table, and `ERROR` if the variable is `undefined` or `nil`
 
+```lua
+yourLogger.printVariableOnce(output, logLevel, filter, depthLimit, prefix, searchTerms)
+```
+
+The __Once__ variant will print the variable only once, based on the name given to `filter`
+
+```lua
+yourLogger.printVariableIfChanged(output, logLevel, filter, depthLimit, prefix, searchTerms)
+```
+
+The __IfChanged__ variant will print only if the contents of the variable have changed since last
+time it was called, based on the name given to `filter`.  Note that this is not deep-recursive, only
+the first level of the table is looked at for changes.
+
 - __output__      : Variable to print
 - __logLevel__    : Log level from LOG_LEVEL below, default is `.DEVEL`
 - __filter__      : Text string for `[filterOut]` and `[filterExclusive]`, default is "--"
@@ -286,6 +300,20 @@ This is a set of VSCode snippets to ease the use of the logger even more.
       ":printVariableIsTable(${1:inputTable}, FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\", ${4|nil,1,2,3,4|}, nil, ${5|nil,{\"searchTable\"},\"searchText\"|})"
     ],
     "description": "Print a variable"
+  },
+  "Logger: variableOnce": {
+    "prefix": [":printVariableOnce"],
+    "body": [
+      ":printVariableOnce(${1:inputTable}, FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\", ${4|nil,1,2,3,4|}, nil, ${5|nil,{\"searchTable\"},\"searchText\"|})"
+    ],
+    "description": "Print a variable (only once)"
+  },
+  "Logger: variableIfChanged": {
+    "prefix": [":printVariableIfChanged"],
+    "body": [
+      ":printVariableIfChanged(${1:inputTable}, FS22Log.LOG_LEVEL.${2|VERBOSE,DEVEL,INFO,WARNING,ERROR|}, \"${3:filterString}\", ${4|nil,1,2,3,4|}, nil, ${5|nil,{\"searchTable\"},\"searchText\"|})"
+    ],
+    "description": "Print a variable (if changed)"
   },
   "Logger: string": {
     "prefix": [":print"],
